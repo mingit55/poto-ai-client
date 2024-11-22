@@ -67,4 +67,13 @@ export default defineNuxtConfig({
   devServer: {
     port: parseInt(process.env.PORT || '3065'), // change this
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "~/assets/scss/_colors.scss" as *;',
+        },
+      },
+    },
+  },
 });

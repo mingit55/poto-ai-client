@@ -11,7 +11,9 @@
 .header {
   height: 50px;
   position: relative;
-  border-bottom: 1px solid #333;
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +26,7 @@
     background: none;
     border: none;
     font-size: 14px;
-    color: #333;
+    color: $color-text;
     cursor: pointer;
   }
 }

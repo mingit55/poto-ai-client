@@ -21,7 +21,7 @@ const props = defineProps({
       {{ label }}
     </div>
     <div class="form-item__input">
-      <Input :type="type" :props="props" />
+      <Input :type="type" :props="props.props" />
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ const props = defineProps({
     font-size: 16px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 
   &__input {

@@ -1,6 +1,5 @@
 <template>
-  <aside class="sidebar">
-  </aside>
+  <aside class="sidebar"></aside>
 </template>
 
 <style lang="scss" scoped>
@@ -11,5 +10,8 @@
   max-width: 500px;
   width: 100%;
   height: 100%;
+  background-color: #fff;
+  transform: translateX(-100%);
+  transition: 0.3s;
 }
 </style>
