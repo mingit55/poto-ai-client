@@ -1,4 +1,9 @@
 <script setup>
+const $emit = defineEmits(['input', 'change']);
+const value = defineModel({
+  type: String,
+  required: true,
+});
 const props = defineProps({
   label: {
     type: String,
@@ -21,7 +26,13 @@ const props = defineProps({
       {{ label }}
     </div>
     <div class="form-item__input">
-      <Input :type="type" :props="props.props" />
+      <Input
+        v-model="value"
+        :type="type"
+        :props="props.props"
+        @input="$emit('input', $event)"
+        @change="$emit('change', $event)"
+      />
     </div>
   </div>
 </template>

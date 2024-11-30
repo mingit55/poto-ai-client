@@ -4,7 +4,9 @@ require('dotenv').config();
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   runtimeConfig: {
-    public: {},
+    public: {
+      apiURL: process.env.API_URL,
+    },
   },
   app: {
     head: {
@@ -62,7 +64,7 @@ export default defineNuxtConfig({
     '~/assets/scss/global.scss',
     '@fortawesome/fontawesome-svg-core/styles.css',
   ],
-  modules: ['@nuxt/eslint'],
+  modules: ['@nuxt/eslint', '@vueuse/nuxt'],
   devtools: { enabled: true },
   devServer: {
     port: parseInt(process.env.PORT || '3065'), // change this
@@ -71,6 +73,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern',
           additionalData: '@use "~/assets/scss/_colors.scss" as *;',
         },
       },

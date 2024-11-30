@@ -1,4 +1,5 @@
 <script setup>
+const $emit = defineEmits(['input', 'change']);
 const value = defineModel({
   type: [String, Number],
   required: true,
@@ -13,6 +14,8 @@ const props = defineProps({
 
 function handleClick(item) {
   value.value = item.value;
+  $emit('input', item.value);
+  $emit('change', item.value);
 }
 </script>
 
@@ -23,6 +26,7 @@ function handleClick(item) {
       :key="i"
       type="button"
       class="select-button__item"
+      aria-role="button"
       :class="{ active: item.value === value }"
       @click="handleClick(item)"
     >
@@ -47,6 +51,7 @@ function handleClick(item) {
     font-weight: 600;
     background-color: #fff;
     border: 1px solid $color-divider;
+    color: $color-text;
     white-space: nowrap;
     border-radius: 2px;
     display: flex;
@@ -80,14 +85,14 @@ function handleClick(item) {
     }
 
     &.active {
-      background-color: $color-dark-primary;
+      background-color: $color-primary;
       color: #fff;
       border-color: #fff;
       .radio-icon {
         border-color: #fff;
 
         &::before {
-          background-color: $color-dark-primary;
+          background-color: $color-primary;
         }
       }
     }

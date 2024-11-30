@@ -14,6 +14,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@google-cloud/vertexai": "^1.9.0",
     "click-outside-vue3": "^4.0.1",
     "dotenv": "^16.4.5",
     "eslint-config-prettier": "^9.1.0",
@@ -28,6 +29,8 @@
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@nuxt/eslint": "^0.6.1",
+    "@vueuse/core": "^12.0.0",
+    "@vueuse/nuxt": "^12.0.0",
     "eslint": "^9.15.0",
     "eslint-plugin-vue": "^9.31.0",
     "globals": "^15.12.0",

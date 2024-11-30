@@ -1,4 +1,5 @@
 <script setup>
+const $emit = defineEmits(['input', 'change']);
 const active = ref(false);
 const value = defineModel({
   type: [String, Number],
@@ -22,6 +23,9 @@ const showText = computed(
 function handleClickItem(item) {
   value.value = item.value;
   active.value = false;
+
+  $emit('input', item.value);
+  $emit('change', item.value);
 }
 </script>
 
@@ -54,6 +58,7 @@ function handleClickItem(item) {
 .dropdown-wrap {
   height: 45px;
   border: 1px solid $color-divider;
+  border-radius: 8px;
   position: relative;
   display: flex;
   align-items: center;
@@ -89,6 +94,18 @@ function handleClickItem(item) {
     pointer-events: none;
     transition: 0.3s;
 
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-divider;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background-color: $color-light;
+    }
+
     &__item {
       height: 45px;
       background-color: #fff;
@@ -103,9 +120,11 @@ function handleClickItem(item) {
   }
 
   &.active {
+    border-radius: 8px 8px 0 0;
     .dropdown-list {
       opacity: 1;
       pointer-events: all;
+      border-radius: 0 0 8px 8px;
     }
   }
 }
