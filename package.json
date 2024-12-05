@@ -1,7 +1,6 @@
 {
-  "name": "nuxt-app",
+  "name": "poto-ai-client",
   "private": true,
-  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
