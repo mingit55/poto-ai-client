@@ -67,7 +67,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@vueuse/nuxt'],
   devtools: { enabled: true },
   devServer: {
-    port: parseInt(process.env.PORT || '3065'), // change this
+    port: parseInt(process.env.PORT || '3001'), // change this
   },
   vite: {
     css: {
