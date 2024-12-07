@@ -1,4 +1,5 @@
 <script setup>
+const $emit = defineEmits(['submit']);
 const form = reactive({});
 const inputs = reactive([
   {
@@ -7,10 +8,10 @@ const inputs = reactive([
     key: 'time',
     props: {
       generator: [
-        { name: '아침', value: '아침' },
-        { name: '주간', value: '주간' },
-        { name: '저녁', value: '저녁' },
-        { name: '야간', value: '야간' },
+        { name: '아침', value: 'Morning' },
+        { name: '주간', value: 'Daytime' },
+        { name: '저녁', value: 'Evening' },
+        { name: '야간', value: 'Night Time' },
       ],
     },
   },
@@ -20,18 +21,15 @@ const inputs = reactive([
     key: 'locationType',
     props: {
       generator: [
-        { name: '실내', value: '실내' },
-        { name: '야외', value: '야외' },
-        { name: '스튜디오', value: '스튜디오' },
+        { name: '실내', value: 'Indoor' },
+        { name: '야외', value: 'Outdoor' },
+        { name: '스튜디오', value: 'Studio' },
       ],
     },
     onChange: (value) => {
       useFetchApi('/ai/category', { params: { locationType: value } }).then(
         (res) => {
-          inputs[2].props.generator = res.map((name) => ({
-            name,
-            value: name,
-          }));
+          inputs[2].props.generator = res;
         },
       );
     },
@@ -79,45 +77,35 @@ async function handleSubmit() {
     return;
   }
 
-  useLoading(true);
-  const res = await useFetchApi('ai/request', {
-    method: 'post',
-    body: {
-      time: form.time,
-      locationType: form.locationType,
-      locationDetail: form.locationDetail,
-      region: form.region,
-    },
-  });
-
-  console.info(res);
-
-  useLoading(false);
+  $emit('submit', form);
 }
 </script>
 
 <template>
-  <div class="request-form">
-    <Transition v-for="(input, i) in inputs" :key="i" name="fade">
-      <FormItem
-        v-if="i === 0 || form[inputs[i - 1].key]"
-        v-model="form[input.key]"
-        :type="input.type"
-        :label="input.label"
-        :props="input.props"
-        @change="input.onChange"
-      />
-    </Transition>
-    <FormButton
-      type="primary"
-      top="20px"
-      :disabled="!canSubmit"
-      @click="handleSubmit"
-    >
-      <fa icon="search" />
-      촬영요건 알아보기
-    </FormButton>
-  </div>
+  <Wrap>
+    <div class="request-form">
+      <Transition v-for="(input, i) in inputs" :key="i" name="fade">
+        <FormItem
+          v-if="i === 0 || form[inputs[i - 1].key]"
+          v-model="form[input.key]"
+          :type="input.type"
+          :label="input.label"
+          :props="input.props"
+          @input="$emit('submit', null)"
+          @change="input.onChange"
+        />
+      </Transition>
+      <FormButton
+        type="primary"
+        top="20px"
+        :disabled="!canSubmit"
+        @click="handleSubmit"
+      >
+        <fa icon="search" />
+        촬영요건 알아보기
+      </FormButton>
+    </div>
+  </Wrap>
 </template>
 
 <style lang="scss" scoped>

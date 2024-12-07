@@ -57,6 +57,11 @@ export default defineNuxtConfig({
         { property: 'og:locale', content: 'en_US' },
         { property: 'og:site_name', content: 'ZZIK-DA | 찍다' },
       ],
+      script: [
+        {
+          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAP_KEY}&callback=initialize&v=weekly`,
+        },
+      ],
     },
   },
   css: [
