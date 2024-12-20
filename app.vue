@@ -3,7 +3,7 @@
     <SideBar class="sidebar" />
     <Header />
     <RouterView />
-    <LoadingContainer />
+    <LoadingLayer />
   </div>
 </template>
 
